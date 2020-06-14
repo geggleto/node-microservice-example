@@ -35,3 +35,7 @@ It would be better to apply events, each event type has a mapping to a function 
 
 Handlers return an Express Handler function while wrapping its dependencies. It would be better to have a dependency 
 container but that's not required for so little end-points.
+
+## Insomnia Collection
+
+See `Insomnia_*.json` for workspaces.
