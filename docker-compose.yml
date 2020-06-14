@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  account-microservice:
+    container_name: account-microservice
+    build:
+      context: ./
+      dockerfile: account-microservice.dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - micro-services-network
+    command: ["/usr/src/app/wait-for-it.sh", "mongo:27017", "--", "node","node_modules/nodemon/bin/nodemon.js", "/usr/src/app/index.js"]
+    volumes:
+      - ./:/usr/src/app
+  mongo:
+    container_name: mongo
+    image: mongo:3.7.9
+    networks:
+      - micro-services-network
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+networks:
+  micro-services-network:
